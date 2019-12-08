@@ -1,4 +1,5 @@
 import io.ktor.application.call
+import io.ktor.request.uri
 import io.ktor.response.respondText
 import io.ktor.routing.get
 import io.ktor.routing.routing
@@ -10,7 +11,7 @@ fun main() {
         routing {
             get("/") {
                 call.respondText { "Hello World" }
-                println("Received response")
+                println("Received request from ${call.request.uri}")
             }
         }
     }
