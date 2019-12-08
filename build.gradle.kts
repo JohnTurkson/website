@@ -13,7 +13,7 @@ repositories {
 
 dependencies {
     compile(kotlin("stdlib-jdk8"))
-    compile("io.ktor:ktor-server-cio:1.2.6")
+    compile("io.ktor:ktor-server-netty:1.2.6")
 }
 
 application {
