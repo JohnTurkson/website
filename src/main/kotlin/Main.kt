@@ -10,6 +10,7 @@ fun main() {
         routing {
             get("/") {
                 call.respondText { "Hello World" }
+                println("Received response")
             }
         }
     }
