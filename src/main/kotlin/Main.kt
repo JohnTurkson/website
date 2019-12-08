@@ -6,7 +6,7 @@ import io.ktor.server.engine.embeddedServer
 import io.ktor.server.cio.CIO
 
 fun main() {
-    val website = embeddedServer(CIO,  443) {
+    val website = embeddedServer(CIO,  7777) {
         routing {
             get("/") {
                 call.respondText { "Hello World" }
