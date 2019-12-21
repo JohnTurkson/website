@@ -3,6 +3,7 @@ import io.ktor.application.call
 import io.ktor.application.install
 import io.ktor.features.HSTS
 import io.ktor.features.HttpsRedirect
+import io.ktor.request.uri
 import io.ktor.response.respondText
 import io.ktor.routing.get
 import io.ktor.routing.routing
@@ -44,12 +45,7 @@ fun Application.main () {
     
     routing {
         get("/") {
-            if (call.request.local.port == 80) {
-                println("Received HTTP request")
-            } else {
-                println("Received HTTPS request")
-            }
-            
+            println(call.request.uri)
             call.respondText { "Hello World" }
         }
     }
