@@ -3,6 +3,8 @@ import io.ktor.application.call
 import io.ktor.application.install
 import io.ktor.features.HSTS
 import io.ktor.features.HttpsRedirect
+import io.ktor.request.path
+import io.ktor.request.queryString
 import io.ktor.request.uri
 import io.ktor.response.respondText
 import io.ktor.routing.get
@@ -45,7 +47,7 @@ fun Application.main () {
     
     routing {
         get("/") {
-            println(call.request.uri)
+            call.request.call.request.headers.forEach { h, v -> println("$h: $v") }
             call.respondText { "Hello World" }
         }
     }
