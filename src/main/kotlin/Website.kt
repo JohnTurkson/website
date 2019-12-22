@@ -1,11 +1,5 @@
 import io.ktor.application.Application
 import io.ktor.application.call
-import io.ktor.application.install
-import io.ktor.features.HSTS
-import io.ktor.features.HttpsRedirect
-import io.ktor.request.path
-import io.ktor.request.queryString
-import io.ktor.request.uri
 import io.ktor.response.respondText
 import io.ktor.routing.get
 import io.ktor.routing.routing
@@ -22,12 +16,7 @@ fun main() {
         
         connector {
             host = "0.0.0.0"
-            port = 443
-        }
-        
-        connector {
-            host = "0.0.0.0"
-            port = 80
+            port = 7000
         }
     }
     
@@ -36,19 +25,21 @@ fun main() {
     website.start(wait = true)
 }
 
-fun Application.main () {
-    // install(HSTS)
-    // install(HttpsRedirect) {
-    //     sslPort = 80
-    //     permanentRedirect = true
-    // }
-    
-    println("Website running")
-    
+
+fun Application.main() {
     routing {
         get("/") {
-            call.request.call.request.headers.forEach { h, v -> println("$h: $v") }
+            println(call.request.headers["Host"])
+            call.request.headers.forEach { h, v -> println("$h: $v") }
             call.respondText { "Hello World" }
         }
+        
+        get("/test") {
+            println(call.request.headers["Host"])
+            call.request.headers.forEach { h, v -> println("$h: $v") }
+            call.respondText { "Hello World test" }
+        }
     }
+    
+    println("Website running")
 }
